@@ -9,13 +9,15 @@ namespace VoteCounter.Test.Unit
         [Fact]
         public void VoteIsForTheFirstPreference()
         {
+            var bill = new Candidate("Bill Gates");
+            var fred = new Candidate("Fred Flinstone");
             var vote = new Vote(new []
             {
-                new Preference(new Candidate("Bill Gates"), 1),
-                new Preference(new Candidate("Fred Flinstone"), 2)
+                new Preference(bill, 1),
+                new Preference(fred, 2)
             });
             
-            Assert.Equal("Bill Gates", vote.Primary.Value);
+            Assert.Equal(bill, vote.Primary);
         }
 
         [Fact]
@@ -29,8 +31,8 @@ namespace VoteCounter.Test.Unit
                 new Preference(fred, 2)
             });
 
-            var nextPreferenceName = vote.Preference(new []{ bill, }).Value;
-            Assert.Equal("Fred Flintstone", nextPreferenceName);
+            var preference = vote.Preference(new []{ bill,});
+            Assert.Equal(fred, preference);
         }
 
         [Fact]
