@@ -20,10 +20,11 @@ namespace VoteCounter.Test.Unit
         public void WinnerIsCandidateWithMostVotes()
         {
             var winner = new Candidate("Candidate1");
+            var runnerUp = new Candidate("Candidate2");
             var results = new ElectorateResult(new[]
             {
                 new Tally(winner, 3),
-                new Tally(new Candidate("Candidate2"), 2),
+                new Tally(runnerUp, 2),
             });
             Assert.False(results.IsRedistributionRequired);            
             Assert.Equal(winner, results.Winner);

@@ -5,16 +5,16 @@ using System.Xml.Resolvers;
 
 namespace VoteCounter
 {
-    public class Vote
+    public class Ballot
     {
         private readonly Preference[] _preferences;
 
-        public Vote(IEnumerable<Preference> preferences)
+        public Ballot(IEnumerable<Preference> preferences)
         {
             _preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
         }
 
-        public Vote(IEnumerable<string> names)
+        public Ballot(IEnumerable<string> names)
         {
             _preferences = names.Select((name, index) => new Preference(new Candidate(name), index + 1)).ToArray();
         }

@@ -5,16 +5,16 @@ namespace VoteCounter
 {
     public class Electorate
     {
-        private readonly List<Vote> _votes;
+        private readonly List<Ballot> _votes;
 
         public Electorate()
         {
-            _votes = new List<Vote>();
+            _votes = new List<Ballot>();
         }
 
-        public void AddVote(Vote vote)
+        public void AddBallot(Ballot ballot)
         {
-            _votes.Add(vote);
+            _votes.Add(ballot);
         }
 
         public ElectorateResult DistributeVotes()

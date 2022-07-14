@@ -11,7 +11,7 @@ namespace VoteCounter.Test.Unit
         {
             var bill = new Candidate("Bill Gates");
             var fred = new Candidate("Fred Flinstone");
-            var vote = new Vote(new []
+            var vote = new Ballot(new []
             {
                 new Preference(bill, 1),
                 new Preference(fred, 2)
@@ -25,7 +25,7 @@ namespace VoteCounter.Test.Unit
         {
             var bill = new Candidate("Bill Gates");
             var fred = new Candidate("Fred Flintstone");
-            var vote = new Vote(new []
+            var vote = new Ballot(new []
             {
                 new Preference(bill, 1),
                 new Preference(fred, 2)
@@ -40,7 +40,7 @@ namespace VoteCounter.Test.Unit
         {
             var bill = new Candidate("Bill Gates");
             var fred = new Candidate("Fred Flintstone");
-            var vote = new Vote(new []
+            var vote = new Ballot(new []
             {
                 new Preference(bill, 1),
                 new Preference(fred, 2)
@@ -55,7 +55,7 @@ namespace VoteCounter.Test.Unit
         {
             var bill = new Candidate("Bill Gates");
             var fred = new Candidate("Fred Flintstone");
-            var vote = new Vote(new []
+            var vote = new Ballot(new []
             {
                 new Preference(bill, 1),
                 new Preference(fred, 2)
@@ -69,7 +69,7 @@ namespace VoteCounter.Test.Unit
         {
             var bill = new Candidate("Bill Gates");
             var fred = new Candidate("Fred Flintstone");
-            var vote = new Vote(new []
+            var vote = new Ballot(new []
             {
                 new Preference(bill, 1),
                 new Preference(fred, 3)
