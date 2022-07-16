@@ -1,4 +1,4 @@
-﻿namespace VoteCounter
+﻿namespace VoteCounter.Election.Results
 {
     public class Tally
     {

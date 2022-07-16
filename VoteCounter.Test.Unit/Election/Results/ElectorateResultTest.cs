@@ -1,6 +1,8 @@
-﻿using Xunit;
+﻿using VoteCounter.Election;
+using VoteCounter.Election.Results;
+using Xunit;
 
-namespace VoteCounter.Test.Unit
+namespace VoteCounter.Test.Unit.Election.Results
 {
     public class ElectorateResultTest
     {

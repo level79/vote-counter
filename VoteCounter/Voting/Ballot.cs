@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Resolvers;
+using VoteCounter.Election;
 
-namespace VoteCounter
+namespace VoteCounter.Voting
 {
     public class Ballot
     {
@@ -14,7 +13,7 @@ namespace VoteCounter
             _preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
         }
 
-        public Ballot(IEnumerable<string> names)
+        public Ballot(params string[] names)
         {
             _preferences = names.Select((name, index) => new Preference(new Candidate(name), index + 1)).ToArray();
         }

@@ -1,6 +1,8 @@
+using VoteCounter.Election;
+using VoteCounter.Voting;
 using Xunit;
 
-namespace VoteCounter.Test.Unit
+namespace VoteCounter.Test.Unit.Election.Results
 {
     public class DistributePreferences
     {
@@ -40,11 +42,11 @@ namespace VoteCounter.Test.Unit
         [Fact]
         public void RedistributeVotesToFindWinner()
         {
-            _electorate.AddBallot(new Ballot(new []{"Mad Katter", "Queen of Spades"}));
-            _electorate.AddBallot(new Ballot(new []{"Mad Katter", "Queen of Spades"}));
-            _electorate.AddBallot(new Ballot(new []{"Alice", "Queen of Spades"}));
-            _electorate.AddBallot(new Ballot(new []{"Alice", "Queen of Spades"}));
-            _electorate.AddBallot(new Ballot(new []{"Bill", "Alice"}));
+            _electorate.AddBallot(new Ballot("Mad Katter", "Queen of Spades"));
+            _electorate.AddBallot(new Ballot("Mad Katter", "Queen of Spades"));
+            _electorate.AddBallot(new Ballot("Alice", "Queen of Spades"));
+            _electorate.AddBallot(new Ballot("Alice", "Queen of Spades"));
+            _electorate.AddBallot(new Ballot("Bill", "Alice"));
             
             Assert.Equal(new Candidate("Alice"), _electorate.DistributeVotes().Winner);
         }

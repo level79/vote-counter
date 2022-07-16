@@ -1,13 +1,15 @@
-﻿namespace VoteCounter
+﻿using VoteCounter.Election;
+
+namespace VoteCounter.Voting
 {
     public class Preference
     {
         public Candidate Candidate { get; }
         public int Rank { get; }
 
-        public Preference(Candidate candidate1, int rank)
+        public Preference(Candidate candidate, int rank)
         {
-            Candidate = candidate1;
+            Candidate = candidate;
             Rank = rank;
         }
     }

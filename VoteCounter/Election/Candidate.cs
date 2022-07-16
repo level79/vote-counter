@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VoteCounter
+﻿namespace VoteCounter.Election
 {
     public class Candidate : TinyType<string>
     {
