@@ -5,32 +5,32 @@ using Xunit;
 
 namespace VoteCounter.Test.Unit.Election.Results;
 
-public class GivenAnElectorateWithASingleVote
+public class GivenAnElectionWithASingleVote
 {
-    private readonly Electorate _electorate;
+    private readonly VoteCounter.Election.Election _election;
     private readonly Candidate _candidate;
 
-    public GivenAnElectorateWithASingleVote()
+    public GivenAnElectionWithASingleVote()
     {
         var ballot = new BallotBuilder().Build();
         _candidate = ballot.Primary;
-        _electorate = new ElectorateBuilder().Build();
-        _electorate.AddCandidate(_candidate);
-        _electorate.AddBallot(ballot);
+        _election = new ElectionBuilder().Build();
+        _election.AddCandidate(_candidate);
+        _election.AddBallot(ballot);
     }
 
     [Fact]
     public void ThenTheBallotCountsWillBe()
     {
-        Assert.Equal(1, _electorate.TotalBallots);
-        Assert.Equal(0, _electorate.InformalBallots);
-        Assert.Equal(1, _electorate.FormalBallots);
+        Assert.Equal(1, _election.TotalBallots);
+        Assert.Equal(0, _election.InformalBallots);
+        Assert.Equal(1, _election.FormalBallots);
     }
 
     [Fact]
     public void ThenTheCandidateWillWin()
     {
-        var electorateResult = _electorate.CountVotes();
+        var electorateResult = _election.CountVotes();
         Assert.Equal(_candidate, electorateResult.Winner);
     }
 }

@@ -12,12 +12,7 @@ namespace VoteCounter.Voting
         {
             _preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
         }
-
-        public Ballot(params string[] names)
-        {
-            _preferences = names.Select((name, index) => new Preference(new Candidate(name), index + 1)).ToArray();
-        }
-
+        
         public Candidate Primary => _preferences.First().Candidate;
         
         public Candidate Preference(IEnumerable<Candidate> eliminatedCandidates)

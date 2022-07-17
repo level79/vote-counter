@@ -5,13 +5,13 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Election
 {
-    public class Electorate
+    public class Election
     {
         private readonly List<Ballot> _ballots;
-        private List<Ballot> _informalBallots;
-        private List<Candidate> _candidates;
+        private readonly List<Ballot> _informalBallots;
+        private readonly List<Candidate> _candidates;
 
-        public Electorate()
+        public Election()
         {
             _ballots = new List<Ballot>();
             _informalBallots = new List<Ballot>();
@@ -34,9 +34,9 @@ namespace VoteCounter.Election
             }
         }
 
-        public ElectorateResult CountVotes(ElectorateResult results = null)
+        public ElectionResult CountVotes(ElectionResult results = null)
         {
-            results ??= new ElectorateResult();
+            results ??= new ElectionResult();
 
             var eliminatedCandidates = results.EliminatedCandidates;
             var currentBallots = _ballots

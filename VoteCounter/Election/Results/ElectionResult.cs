@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace VoteCounter.Election.Results
 {
-    public class ElectorateResult
+    public class ElectionResult
     {
         private readonly List<PreferenceRound> _preferenceRounds;
 
-        public ElectorateResult()
+        public ElectionResult()
         {
             _preferenceRounds = new List<PreferenceRound>();
         }
