@@ -1,5 +1,5 @@
 using System;
-using VoteCounter.Election;
+using VoteCounter.Elections;
 using VoteCounter.Voting;
 using Xunit;
 
@@ -9,13 +9,13 @@ public class GivenABallotMarkedForBillAndFred
 {
     private readonly Candidate _candidateBill;
     private readonly Candidate _candidateFred;
-    private readonly Ballot _ballot;
+    private readonly OptionalPreferentialBallot _optionalPreferentialBallot;
 
     public GivenABallotMarkedForBillAndFred()
     {
         _candidateBill = new Candidate("Bill Gates");
         _candidateFred = new Candidate("Fred Flinstone");
-        _ballot = new Ballot(new []
+        _optionalPreferentialBallot = new OptionalPreferentialBallot(new []
         {
             new Preference(_candidateBill, 1),
             new Preference(_candidateFred, 2)
@@ -25,26 +25,26 @@ public class GivenABallotMarkedForBillAndFred
     [Fact]
     public void ThenTheFirstPreferenceIsForBill()
     {
-        Assert.Equal(_candidateBill, _ballot.Primary);
+        Assert.Equal(_candidateBill, _optionalPreferentialBallot.Primary);
     }
 
     [Fact]
     public void WhenBillIsEliminated_ThenTheBallotWillBeForFred()
     {
-        var preference = _ballot.Preference(new []{ _candidateBill,});
+        var preference = _optionalPreferentialBallot.Preference(new []{ _candidateBill,});
         Assert.Equal(_candidateFred, preference);
     }
 
     [Fact]
     public void WhenBillAndFredAreEliminated_ThenTheBallotWillBeExhausted()
     {
-        Assert.False(_ballot.IsExhausted(Array.Empty<Candidate>()));
-        Assert.True(_ballot.IsExhausted(new []{_candidateBill, _candidateFred}));
+        Assert.False(_optionalPreferentialBallot.IsExhausted(Array.Empty<Candidate>()));
+        Assert.True(_optionalPreferentialBallot.IsExhausted(new []{_candidateBill, _candidateFred}));
     }
 
     [Fact]
     public void ThenTheBallotWillBeFormal()
     {
-        Assert.False(_ballot.IsInformal(new []{_candidateBill, _candidateFred}));
+        Assert.False(_optionalPreferentialBallot.IsInformal(new []{_candidateBill, _candidateFred}));
     }
 }

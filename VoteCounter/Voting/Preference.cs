@@ -1,4 +1,4 @@
-﻿using VoteCounter.Election;
+﻿using VoteCounter.Elections;
 
 namespace VoteCounter.Voting
 {

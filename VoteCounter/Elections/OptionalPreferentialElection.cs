@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Election.Results;
+using VoteCounter.Elections.Results;
 using VoteCounter.Voting;
 
-namespace VoteCounter.Election
+namespace VoteCounter.Elections
 {
-    public class Election
+    public class OptionalPreferentialElection
     {
-        private readonly List<Ballot> _ballots;
-        private readonly List<Ballot> _informalBallots;
+        private readonly List<OptionalPreferentialBallot> _ballots;
+        private readonly List<OptionalPreferentialBallot> _informalBallots;
         private readonly List<Candidate> _candidates;
 
-        public Election()
+        public OptionalPreferentialElection()
         {
-            _ballots = new List<Ballot>();
-            _informalBallots = new List<Ballot>();
+            _ballots = new List<OptionalPreferentialBallot>();
+            _informalBallots = new List<OptionalPreferentialBallot>();
             _candidates = new List<Candidate>();
         }
 
@@ -22,15 +22,15 @@ namespace VoteCounter.Election
         public int InformalBallots => _informalBallots.Count;
         public int FormalBallots => _ballots.Count;
 
-        public void AddBallot(Ballot ballot)
+        public void AddBallot(OptionalPreferentialBallot optionalPreferentialBallot)
         {
-            if (ballot.IsInformal(_candidates))
+            if (optionalPreferentialBallot.IsInformal(_candidates))
             {
-                _informalBallots.Add(ballot);
+                _informalBallots.Add(optionalPreferentialBallot);
             }
             else
             {
-                _ballots.Add(ballot);
+                _ballots.Add(optionalPreferentialBallot);
             }
         }
 

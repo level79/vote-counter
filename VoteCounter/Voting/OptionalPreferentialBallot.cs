@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Election;
+using VoteCounter.Elections;
 
 namespace VoteCounter.Voting
 {
-    public class Ballot
+    public class OptionalPreferentialBallot
     {
         private readonly Preference[] _preferences;
 
-        public Ballot(IEnumerable<Preference> preferences)
+        public OptionalPreferentialBallot(IEnumerable<Preference> preferences)
         {
             _preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
         }

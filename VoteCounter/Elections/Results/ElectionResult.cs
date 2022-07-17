@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace VoteCounter.Election.Results
+namespace VoteCounter.Elections.Results
 {
     public class ElectionResult
     {

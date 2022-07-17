@@ -1,4 +1,4 @@
-﻿namespace VoteCounter.Election
+﻿namespace VoteCounter.Elections
 {
     public class Candidate : TinyType<string>
     {

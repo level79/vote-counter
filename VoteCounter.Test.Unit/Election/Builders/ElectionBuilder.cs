@@ -6,8 +6,8 @@ public class ElectionBuilder
     {
     }
 
-    public VoteCounter.Election.Election Build()
+    public VoteCounter.Elections.OptionalPreferentialElection Build()
     {
-        return new VoteCounter.Election.Election();
+        return new VoteCounter.Elections.OptionalPreferentialElection();
     }
 }

@@ -1,15 +1,15 @@
-﻿using VoteCounter.Election;
+﻿using VoteCounter.Elections;
 using Xunit;
 
 namespace VoteCounter.Test.Unit.Election
 {
     public class GivenACandidate
     {
-        private readonly Candidate _canditate;
+        private readonly Candidate _candidate;
 
         public GivenACandidate()
         {
-            _canditate = new Candidate(CandidateName);
+            _candidate = new Candidate(CandidateName);
         }
         private const string CandidateName = "Fred Bloggs";
 
@@ -18,19 +18,19 @@ namespace VoteCounter.Test.Unit.Election
         {
             var candidate2 = new Candidate(CandidateName);
             
-            Assert.Equal(_canditate, candidate2);
+            Assert.Equal(_candidate, candidate2);
         }
 
         [Fact]
         public void TheHashCodeIsDeterminedByName()
         {
-            Assert.Equal(CandidateName.GetHashCode(), _canditate.GetHashCode());
+            Assert.Equal(CandidateName.GetHashCode(), _candidate.GetHashCode());
         }
         
         [Fact]
         public void ToStringWillReturnTheName()
         {
-            Assert.Equal(CandidateName, _canditate.ToString());
+            Assert.Equal(CandidateName, _candidate.ToString());
         }
     }
 }

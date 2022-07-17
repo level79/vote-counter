@@ -1,4 +1,4 @@
-using VoteCounter.Election;
+using VoteCounter.Elections;
 using VoteCounter.Voting;
 using Xunit;
 
@@ -8,13 +8,13 @@ namespace VoteCounter.Test.Unit.Voting
     {
         private readonly Candidate _candidateBill;
         private readonly Candidate _candidateFred;
-        private readonly Ballot _ballot;
+        private readonly OptionalPreferentialBallot _optionalPreferentialBallot;
 
         public GivenABallotWithNonSequentialPreferences()
         {
             _candidateBill = new Candidate("Bill Gates");
             _candidateFred = new Candidate("Fred Flinstone");
-            _ballot = new Ballot(new []
+            _optionalPreferentialBallot = new OptionalPreferentialBallot(new []
             {
                 new Preference(_candidateBill, 1),
                 new Preference(_candidateFred, 3)
@@ -23,7 +23,7 @@ namespace VoteCounter.Test.Unit.Voting
         [Fact]
         public void ThenTheBallotIsNotFormal()
         {
-            Assert.True(_ballot.IsInformal(new []{_candidateBill, _candidateFred}));
+            Assert.True(_optionalPreferentialBallot.IsInformal(new []{_candidateBill, _candidateFred}));
         }
     }
 }

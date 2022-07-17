@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Election;
+using VoteCounter.Elections;
 using VoteCounter.Test.Unit.Election.Builders;
 using VoteCounter.Voting;
 
 namespace VoteCounter.Test.Unit.Voting.Builders;
 
-public class BallotBuilder
+public class OptionalPreferentialBallotBuilder
 {
     private List<Preference> _preferences = new()
     {
         new Preference(new CandidateBuilder().Build(), 1)
     };
-    public Ballot Build()
+    public OptionalPreferentialBallot Build()
     {
-        return new Ballot(_preferences);
+        return new OptionalPreferentialBallot(_preferences);
     }
 
-    public BallotBuilder AsInformal()
+    public OptionalPreferentialBallotBuilder AsInformal()
     {
         _preferences = new List<Preference>
         {
@@ -27,7 +27,7 @@ public class BallotBuilder
         return this;
     }
 
-    public BallotBuilder ForCandidates(params string[] candidates)
+    public OptionalPreferentialBallotBuilder ForCandidates(params string[] candidates)
     {
         _preferences = candidates.Select((c, index) => 
             new Preference(new CandidateBuilder().WithName(c).Build(), index + 1)
@@ -35,7 +35,7 @@ public class BallotBuilder
         return this;
     }
 
-    public BallotBuilder WithCandidates(params Candidate[] candidates)
+    public OptionalPreferentialBallotBuilder WithCandidates(params Candidate[] candidates)
     {
         _preferences = candidates.Shuffle().Select((c, index) => 
             new Preference(c, index + 1)

@@ -1,5 +1,5 @@
 using Bogus;
-using VoteCounter.Election;
+using VoteCounter.Elections;
 
 namespace VoteCounter.Test.Unit.Election.Builders;
 
