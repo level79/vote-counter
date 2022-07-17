@@ -2,17 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VoteCounter.Elections;
-using VoteCounter.Test.Unit.Election.Builders;
+using VoteCounter.Test.Unit.Elections.Builders;
 using VoteCounter.Voting;
 
 namespace VoteCounter.Test.Unit.Voting.Builders;
 
 public class OptionalPreferentialBallotBuilder
 {
+    private static readonly Random RandomNumberGenerator;
     private List<Preference> _preferences = new()
     {
         new Preference(new CandidateBuilder().Build(), 1)
     };
+    
+    static OptionalPreferentialBallotBuilder()
+    {
+        RandomNumberGenerator = new Random();
+    }
+
     public OptionalPreferentialBallot Build()
     {
         return new OptionalPreferentialBallot(_preferences);
@@ -26,23 +33,18 @@ public class OptionalPreferentialBallotBuilder
         };
         return this;
     }
-
-    public OptionalPreferentialBallotBuilder ForCandidates(params string[] candidates)
-    {
-        _preferences = candidates.Select((c, index) => 
-            new Preference(new CandidateBuilder().WithName(c).Build(), index + 1)
-        ).ToList();
-        return this;
-    }
-
+    
     public OptionalPreferentialBallotBuilder WithCandidates(params Candidate[] candidates)
     {
-        _preferences = candidates.Shuffle().Select((c, index) => 
+        var candidatesToTake = Math.Max(1,RandomNumberGenerator.Next(candidates.Length - 1));
+        _preferences = candidates
+            .Shuffle()
+            .Take(Range.EndAt(candidatesToTake))
+            .Select((c, index) => 
             new Preference(c, index + 1)
         ).ToList();
         return this;
     }
-    
 }
 
 public static class Foo

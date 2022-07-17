@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using VoteCounter.Elections;
-using VoteCounter.Test.Unit.Election.Builders;
+using VoteCounter.Test.Unit.Elections.Builders;
 using VoteCounter.Test.Unit.Voting.Builders;
 using VoteCounter.Voting;
 using Xunit;

@@ -1,7 +1,7 @@
 using Bogus;
 using VoteCounter.Elections;
 
-namespace VoteCounter.Test.Unit.Election.Builders;
+namespace VoteCounter.Test.Unit.Elections.Builders;
 
 public class CandidateBuilder
 {

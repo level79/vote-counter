@@ -1,19 +1,19 @@
 using System.Linq;
 using VoteCounter.Elections;
-using VoteCounter.Test.Unit.Election.Builders;
+using VoteCounter.Test.Unit.Elections.Builders;
 using VoteCounter.Test.Unit.Voting.Builders;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Election.Results
+namespace VoteCounter.Test.Unit.Elections.Results
 {
     public class GivenAnElectionWith1000Votes
     {
-        private readonly VoteCounter.Elections.OptionalPreferentialElection _optionalPreferentialElection;
+        private readonly OptionalPreferentialElection _optionalPreferentialElection;
         private readonly Candidate[] _candidates;
 
         public GivenAnElectionWith1000Votes()
         {
-            _optionalPreferentialElection = new VoteCounter.Elections.OptionalPreferentialElection();
+            _optionalPreferentialElection = new OptionalPreferentialElection();
             _candidates = Enumerable.Range(0, 5).Select(i => new CandidateBuilder().Build()).ToArray();
             foreach (var candidate in _candidates)
             {
@@ -31,7 +31,7 @@ namespace VoteCounter.Test.Unit.Election.Results
         {
             var electorateResult = _optionalPreferentialElection.CountVotes();
             Assert.Equal(2, electorateResult.Candidates);
-            Assert.Equal(1000, electorateResult.TotalVotes);
+            Assert.Equal(_optionalPreferentialElection.FormalBallots, electorateResult.TotalBallots);
             Assert.Equal(_candidates.Length - 1, electorateResult.PreferenceRoundsRequired);
         }
     }

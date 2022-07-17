@@ -1,12 +1,13 @@
-using VoteCounter.Test.Unit.Election.Builders;
+using VoteCounter.Elections;
+using VoteCounter.Test.Unit.Elections.Builders;
 using VoteCounter.Test.Unit.Voting.Builders;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Election.Results;
+namespace VoteCounter.Test.Unit.Elections.Results;
 
 public class GivenAnElectionWithABallotForANonCandidate
 {
-    private readonly VoteCounter.Elections.OptionalPreferentialElection _optionalPreferentialElection;
+    private readonly OptionalPreferentialElection _optionalPreferentialElection;
 
     public GivenAnElectionWithABallotForANonCandidate()
     {

@@ -1,7 +1,7 @@
 ﻿using VoteCounter.Elections;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Election
+namespace VoteCounter.Test.Unit.Elections
 {
     public class GivenACandidate
     {

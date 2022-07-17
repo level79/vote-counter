@@ -15,7 +15,7 @@ namespace VoteCounter.Elections.Results
         public Candidate Winner => _preferenceRounds.Last().Leader;
 
         public bool CountIsFinalised => _preferenceRounds.Last().IsFinalRound;
-        public int TotalVotes => _preferenceRounds.Last().TotalVotes;
+        public int TotalBallots => _preferenceRounds.First().TotalVotes;
         public int Candidates => _preferenceRounds.Last().NumberOfCandidates;
 
         public IEnumerable<Candidate> EliminatedCandidates => _preferenceRounds.Select(pr => pr.EliminatedCandidate);
