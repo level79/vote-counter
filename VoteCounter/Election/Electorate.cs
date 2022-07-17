@@ -9,11 +9,13 @@ namespace VoteCounter.Election
     {
         private readonly List<Ballot> _ballots;
         private List<Ballot> _informalBallots;
+        private List<Candidate> _candidates;
 
         public Electorate()
         {
             _ballots = new List<Ballot>();
             _informalBallots = new List<Ballot>();
+            _candidates = new List<Candidate>();
         }
 
         public int TotalBallots => FormalBallots + InformalBallots;
@@ -22,27 +24,36 @@ namespace VoteCounter.Election
 
         public void AddBallot(Ballot ballot)
         {
-            if (ballot.IsFormal)
-            {
-                _ballots.Add(ballot);
-            }
-            else
+            if (ballot.IsInformal(_candidates))
             {
                 _informalBallots.Add(ballot);
             }
+            else
+            {
+                _ballots.Add(ballot);
+            }
         }
 
-        public ElectorateResult DistributeVotes(List<Candidate> eliminatedCandidates = null)
+        public ElectorateResult CountVotes(ElectorateResult results = null)
         {
-            eliminatedCandidates ??= new List<Candidate>();
-            
-            var results = new ElectorateResult(_ballots
-                .Where(vote => !vote.IsExhausted(eliminatedCandidates))
-                .GroupBy(vote => vote.Preference(eliminatedCandidates))
+            results ??= new ElectorateResult();
+
+            var eliminatedCandidates = results.EliminatedCandidates;
+            var currentBallots = _ballots
+                .Where(vote => !vote.IsExhausted(eliminatedCandidates));
+            var ballotGrouping = currentBallots
+                .GroupBy(vote => vote.Preference(eliminatedCandidates));
+            var preferenceRound = new PreferenceRound(ballotGrouping
                 .Select(group => new Tally(group.Key, group.Count())));
-            eliminatedCandidates.Add(results.Last);
             
-            return results.IsRedistributionRequired ? DistributeVotes(eliminatedCandidates) : results;
+            results.AddPreferenceRound(preferenceRound);
+
+            return results.CountIsFinalised ? results : CountVotes(results);
+        }
+
+        public void AddCandidate(Candidate candidate)
+        {
+            _candidates.Add(candidate);
         }
     }
 }

@@ -1,16 +1,20 @@
+using Bogus;
 using VoteCounter.Election;
 
 namespace VoteCounter.Test.Unit.Election.Builders;
 
 public class CandidateBuilder
 {
-    public CandidateBuilder()
-    {
-        var candidate = Build();
-    }
-
+    private string _name = new Faker().Name.FirstName();
+    
     public Candidate Build()
     {
-        return new Candidate("Mad Katter");
+        return new Candidate(_name);
+    }
+
+    public CandidateBuilder WithName(string name)
+    {
+        _name = name;
+        return this;
     }
 }

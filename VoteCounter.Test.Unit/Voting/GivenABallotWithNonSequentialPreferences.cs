@@ -2,7 +2,7 @@ using VoteCounter.Election;
 using VoteCounter.Voting;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Ballots
+namespace VoteCounter.Test.Unit.Voting
 {
     public class GivenABallotWithNonSequentialPreferences
     {
@@ -23,7 +23,7 @@ namespace VoteCounter.Test.Unit.Ballots
         [Fact]
         public void ThenTheBallotIsNotFormal()
         {
-            Assert.False(_ballot.IsFormal);
+            Assert.True(_ballot.IsInformal(new []{_candidateBill, _candidateFred}));
         }
     }
 }

@@ -12,10 +12,11 @@ public class GivenAnElectorateWithASingleVote
 
     public GivenAnElectorateWithASingleVote()
     {
-        _electorate = new ElectorateBuilder().Build();
         var ballot = new BallotBuilder().Build();
-        _electorate.AddBallot(ballot);
         _candidate = ballot.Primary;
+        _electorate = new ElectorateBuilder().Build();
+        _electorate.AddCandidate(_candidate);
+        _electorate.AddBallot(ballot);
     }
 
     [Fact]
@@ -29,7 +30,7 @@ public class GivenAnElectorateWithASingleVote
     [Fact]
     public void ThenTheCandidateWillWin()
     {
-        var electorateResult = _electorate.DistributeVotes();
+        var electorateResult = _electorate.CountVotes();
         Assert.Equal(_candidate, electorateResult.Winner);
     }
 }

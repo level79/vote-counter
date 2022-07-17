@@ -5,21 +5,22 @@ using Xunit;
 
 namespace VoteCounter.Test.Unit.Election.Results;
 
-public class GivenAnElectorateWithASingleInformalVote
+public class GivenAnElectorateWithABallotForANonCandidate
 {
     private readonly Electorate _electorate;
 
-    public GivenAnElectorateWithASingleInformalVote()
+    public GivenAnElectorateWithABallotForANonCandidate()
     {
         _electorate = new ElectorateBuilder().Build();
-        _electorate.AddBallot(new BallotBuilder().AsInformal().Build());
+        _electorate.AddCandidate(new CandidateBuilder().Build());
+        _electorate.AddBallot(new BallotBuilder().Build());
     }
-
+    
     [Fact]
     public void ThenTheBallotCountsWillBe()
     {
         Assert.Equal(1, _electorate.TotalBallots);
-        Assert.Equal(0, _electorate.FormalBallots);
         Assert.Equal(1, _electorate.InformalBallots);
+        Assert.Equal(0, _electorate.FormalBallots);
     }
 }
