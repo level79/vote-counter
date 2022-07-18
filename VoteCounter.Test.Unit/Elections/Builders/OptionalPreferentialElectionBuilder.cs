@@ -1,10 +1,11 @@
 using VoteCounter.Elections;
+using VoteCounter.Elections.Preferential.Optional;
 
 namespace VoteCounter.Test.Unit.Elections.Builders;
 
-public class ElectionBuilder
+public class OptionalPreferentialElectionBuilder
 {
-    public ElectionBuilder()
+    public OptionalPreferentialElectionBuilder()
     {
     }
 

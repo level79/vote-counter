@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Elections;
+using VoteCounter.Voting;
 
-namespace VoteCounter.Voting
+namespace VoteCounter.Elections.Preferential.Optional
 {
     public class OptionalPreferentialBallot
     {

@@ -1,9 +1,8 @@
-using VoteCounter.Elections;
+using VoteCounter.Elections.Preferential.Optional;
 using VoteCounter.Test.Unit.Elections.Builders;
-using VoteCounter.Test.Unit.Voting.Builders;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Elections.Results;
+namespace VoteCounter.Test.Unit.Elections.Preferential.Optional.Results;
 
 public class GivenAnElectionWithASingleInformalVote
 {
@@ -11,7 +10,7 @@ public class GivenAnElectionWithASingleInformalVote
 
     public GivenAnElectionWithASingleInformalVote()
     {
-        _optionalPreferentialElection = new ElectionBuilder().Build();
+        _optionalPreferentialElection = new OptionalPreferentialElectionBuilder().Build();
         _optionalPreferentialElection.AddBallot(new OptionalPreferentialBallotBuilder().AsInformal().Build());
     }
 

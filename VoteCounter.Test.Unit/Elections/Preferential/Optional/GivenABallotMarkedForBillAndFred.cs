@@ -1,9 +1,10 @@
 using System;
 using VoteCounter.Elections;
+using VoteCounter.Elections.Preferential.Optional;
 using VoteCounter.Voting;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Voting;
+namespace VoteCounter.Test.Unit.Elections.Preferential.Optional;
 
 public class GivenABallotMarkedForBillAndFred
 {

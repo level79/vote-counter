@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using VoteCounter.Elections.Preferential.Optional.Results;
 using VoteCounter.Elections.Results;
 using VoteCounter.Voting;
 
-namespace VoteCounter.Elections
+namespace VoteCounter.Elections.Preferential.Optional
 {
     public class OptionalPreferentialElection
     {
@@ -34,9 +35,9 @@ namespace VoteCounter.Elections
             }
         }
 
-        public ElectionResult CountVotes(ElectionResult results = null)
+        public OptionalPreferentialElectionResult CountVotes(OptionalPreferentialElectionResult results = null)
         {
-            results ??= new ElectionResult();
+            results ??= new OptionalPreferentialElectionResult();
 
             var eliminatedCandidates = results.EliminatedCandidates;
             var currentBallots = _ballots

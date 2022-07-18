@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using VoteCounter.Elections;
+using VoteCounter.Elections.Preferential.Optional;
 using VoteCounter.Test.Unit.Elections.Builders;
-using VoteCounter.Test.Unit.Voting.Builders;
-using VoteCounter.Voting;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Voting;
+namespace VoteCounter.Test.Unit.Elections.Preferential.Optional;
 
 public class GivenABallotForOneCandidate
 {

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VoteCounter.Elections;
-using VoteCounter.Test.Unit.Elections.Builders;
+using VoteCounter.Elections.Preferential.Optional;
 using VoteCounter.Voting;
 
-namespace VoteCounter.Test.Unit.Voting.Builders;
+namespace VoteCounter.Test.Unit.Elections.Builders;
 
 public class OptionalPreferentialBallotBuilder
 {

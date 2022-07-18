@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VoteCounter.Elections.Results;
 
-namespace VoteCounter.Elections.Results;
+namespace VoteCounter.Elections.Preferential;
 
 public class PreferenceRound
 {
