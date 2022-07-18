@@ -6,12 +6,8 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Optional
 {
-    public class OptionalPreferentialElection
+    public class OptionalPreferentialElection : PreferentialElection<OptionalPreferentialBallot>
     {
-        private readonly List<OptionalPreferentialBallot> _ballots;
-        private readonly List<OptionalPreferentialBallot> _informalBallots;
-        private readonly List<Candidate> _candidates;
-
         public OptionalPreferentialElection()
         {
             _ballots = new List<OptionalPreferentialBallot>();
@@ -19,25 +15,9 @@ namespace VoteCounter.Elections.Preferential.Optional
             _candidates = new List<Candidate>();
         }
 
-        public int TotalBallots => FormalBallots + InformalBallots;
-        public int InformalBallots => _informalBallots.Count;
-        public int FormalBallots => _ballots.Count;
-
-        public void AddBallot(OptionalPreferentialBallot optionalPreferentialBallot)
+        public override PreferentialElectionResult CountVotes(PreferentialElectionResult results = null)
         {
-            if (optionalPreferentialBallot.IsInformal())
-            {
-                _informalBallots.Add(optionalPreferentialBallot);
-            }
-            else
-            {
-                _ballots.Add(optionalPreferentialBallot);
-            }
-        }
-
-        public OptionalPreferentialElectionResult CountVotes(OptionalPreferentialElectionResult results = null)
-        {
-            results ??= new OptionalPreferentialElectionResult();
+            results ??= new PreferentialElectionResult();
 
             var eliminatedCandidates = results.EliminatedCandidates;
             var currentBallots = _ballots
@@ -50,11 +30,6 @@ namespace VoteCounter.Elections.Preferential.Optional
             results.AddPreferenceRound(preferenceRound);
 
             return results.CountIsFinalised ? results : CountVotes(results);
-        }
-
-        public void AddCandidate(Candidate candidate)
-        {
-            _candidates.Add(candidate);
         }
     }
 }

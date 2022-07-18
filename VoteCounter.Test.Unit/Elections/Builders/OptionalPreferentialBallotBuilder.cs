@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VoteCounter.Elections;
 using VoteCounter.Elections.Preferential.Optional;
+using VoteCounter.Utilities;
 using VoteCounter.Voting;
 
 namespace VoteCounter.Test.Unit.Elections.Builders;
@@ -53,22 +54,5 @@ public class OptionalPreferentialBallotBuilder
     {
         _candidates = candidates;
         return this;
-    }
-}
-
-public static class Foo
-{
-    private static readonly Random Rng = new();  
-
-    public static IList<T> Shuffle<T>(this IList<T> list)  
-    {  
-        var n = list.Count;  
-        while (n > 1) {  
-            n--;  
-            var k = Rng.Next(n + 1);  
-            (list[k], list[n]) = (list[n], list[k]);
-        }
-
-        return list;
     }
 }

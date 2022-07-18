@@ -6,12 +6,12 @@ using Xunit;
 
 namespace VoteCounter.Test.Unit.Elections.Preferential.Optional.Results
 {
-    public class GivenAnElectionWith1000Votes
+    public class GivenAnOptionalPreferentialElectionWith1000Votes
     {
         private readonly OptionalPreferentialElection _optionalPreferentialElection;
         private readonly Candidate[] _candidates;
 
-        public GivenAnElectionWith1000Votes()
+        public GivenAnOptionalPreferentialElectionWith1000Votes()
         {
             _optionalPreferentialElection = new OptionalPreferentialElection();
             _candidates = Enumerable.Range(0, 5).Select(i => new CandidateBuilder().Build()).ToArray();

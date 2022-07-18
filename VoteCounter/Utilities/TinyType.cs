@@ -1,4 +1,4 @@
-﻿namespace VoteCounter
+﻿namespace VoteCounter.Utilities
 {
     public class TinyType<T>
     {

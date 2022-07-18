@@ -4,7 +4,7 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Optional
 {
-    public class OptionalPreferentialBallot : PreferentialBallotBase
+    public class OptionalPreferentialBallot : PreferentialBallot
     {
         public OptionalPreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences) : base(candidates, preferences)
         {

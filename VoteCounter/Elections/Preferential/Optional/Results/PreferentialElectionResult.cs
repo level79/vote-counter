@@ -4,11 +4,11 @@ using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.Preferential.Optional.Results
 {
-    public class OptionalPreferentialElectionResult
+    public class PreferentialElectionResult
     {
         private readonly List<PreferenceRound> _preferenceRounds;
 
-        public OptionalPreferentialElectionResult()
+        public PreferentialElectionResult()
         {
             _preferenceRounds = new List<PreferenceRound>();
         }

@@ -4,7 +4,7 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Full;
 
-public class FullPreferentialBallot : PreferentialBallotBase
+public class FullPreferentialBallot : PreferentialBallot
 {
     public FullPreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences) : base(candidates, preferences)
     {

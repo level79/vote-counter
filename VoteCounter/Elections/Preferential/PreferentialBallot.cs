@@ -4,12 +4,12 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential;
 
-public abstract class PreferentialBallotBase
+public abstract class PreferentialBallot
 {
     protected Preference[] _preferences;
     protected IEnumerable<Candidate> _candidates;
 
-    public PreferentialBallotBase(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences)
+    public PreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences)
     {
         _candidates = candidates;
         _preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
