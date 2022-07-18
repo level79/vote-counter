@@ -16,13 +16,15 @@ public class GivenABallotMarkedForBillAndFred
     {
         _candidateBill = new Candidate("Bill Gates");
         _candidateFred = new Candidate("Fred Flinstone");
-        _optionalPreferentialBallot = new OptionalPreferentialBallot(
-            new[] {_candidateBill, _candidateFred},
-            new[]
-            {
-                new Preference(_candidateBill, 1),
-                new Preference(_candidateFred, 2)
-            });
+        var candidates = new[] {_candidateBill, _candidateFred};
+        var preferences = new[]
+        {
+            new Preference(_candidateBill, 1),
+            new Preference(_candidateFred, 2)
+        };
+
+        _optionalPreferentialBallot = OptionalPreferentialBallot.IssueBallot(candidates);
+        _optionalPreferentialBallot.AddPreferences(preferences);
     }
 
     [Fact]

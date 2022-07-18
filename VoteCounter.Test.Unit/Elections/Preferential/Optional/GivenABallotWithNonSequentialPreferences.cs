@@ -7,21 +7,20 @@ namespace VoteCounter.Test.Unit.Elections.Preferential.Optional
 {
     public class GivenABallotWithNonSequentialPreferences
     {
-        private readonly Candidate _candidateBill;
-        private readonly Candidate _candidateFred;
         private readonly OptionalPreferentialBallot _optionalPreferentialBallot;
 
         public GivenABallotWithNonSequentialPreferences()
         {
-            _candidateBill = new Candidate("Bill Gates");
-            _candidateFred = new Candidate("Fred Flinstone");
-            _optionalPreferentialBallot = new OptionalPreferentialBallot(
-                new[] {_candidateBill, _candidateFred},
-                new[]
-                {
-                    new Preference(_candidateBill, 1),
-                    new Preference(_candidateFred, 3)
-                });
+            var candidateBill = new Candidate("Bill Gates");
+            var candidateFred = new Candidate("Fred Flinstone");
+            var candidates = new[] {candidateBill, candidateFred};
+            var preferences = new[]
+            {
+                new Preference(candidateBill, 1),
+                new Preference(candidateFred, 3)
+            };
+            _optionalPreferentialBallot = OptionalPreferentialBallot.IssueBallot(candidates);
+            _optionalPreferentialBallot.AddPreferences(preferences);
         }
 
         [Fact]

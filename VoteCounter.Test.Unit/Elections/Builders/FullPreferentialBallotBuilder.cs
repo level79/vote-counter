@@ -20,7 +20,9 @@ public class FullPreferentialBallotBuilder
 
     public FullPreferentialBallot Build()
     {
-        return new FullPreferentialBallot(_candidates, _preferences);
+        var ballot = FullPreferentialBallot.IssueBallot(_candidates);
+        ballot.AddPreferences(_preferences);
+        return ballot;
     }
 
     public FullPreferentialBallotBuilder WithCandidates(params Candidate[] candidates)

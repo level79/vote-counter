@@ -26,7 +26,9 @@ public class OptionalPreferentialBallotBuilder
 
     public OptionalPreferentialBallot Build()
     {
-        return new OptionalPreferentialBallot(_candidates, _preferences);
+        var ballot = OptionalPreferentialBallot.IssueBallot(_candidates);
+        ballot.AddPreferences(_preferences);
+        return ballot;
     }
 
     public OptionalPreferentialBallotBuilder AsInformal()

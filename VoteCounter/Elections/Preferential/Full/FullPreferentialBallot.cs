@@ -6,18 +6,26 @@ namespace VoteCounter.Elections.Preferential.Full;
 
 public class FullPreferentialBallot : PreferentialBallot
 {
-    public FullPreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences) : base(candidates, preferences)
+    private FullPreferentialBallot()
     {
     }
 
+    public static FullPreferentialBallot IssueBallot(IEnumerable<Candidate> candidates)
+    {
+        return new FullPreferentialBallot()
+        {
+            Candidates = candidates
+        };
+    }
+    
     public override bool IsInformal()
     {
-        var ballotIsEmpty = _preferences.Length == 0;
-        var ballotIsNotForAllCandidates = !_candidates.All(_preferences.Select(p => p.Candidate).Contains);
-        var ballotIsForOtherCandidates = !_preferences
+        var ballotIsEmpty = Preferences.Length == 0;
+        var ballotIsNotForAllCandidates = !Candidates.All(Preferences.Select(p => p.Candidate).Contains);
+        var ballotIsForOtherCandidates = !Preferences
             .Select(p => p.Candidate)
-            .All(_candidates.Contains);
-        var ballotPreferencesNotContiguous = _preferences
+            .All(Candidates.Contains);
+        var ballotPreferencesNotContiguous = Preferences
             .Select((preference, index) => (preference.Rank, index + 1)).Any(tuple => tuple.Item1 != tuple.Item2);
         return ballotIsEmpty || ballotPreferencesNotContiguous || ballotIsNotForAllCandidates || ballotIsForOtherCandidates;
 
