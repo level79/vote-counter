@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Elections.Results;
 
-namespace VoteCounter.Elections.Preferential.Optional.Results
+namespace VoteCounter.Elections.Preferential.Results
 {
     public class PreferentialElectionResult
     {

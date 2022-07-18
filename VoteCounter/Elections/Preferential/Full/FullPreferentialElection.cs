@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Elections.Preferential.Optional.Results;
+using VoteCounter.Elections.Preferential.Results;
 using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.Preferential.Full;
