@@ -15,16 +15,19 @@ namespace VoteCounter.Test.Unit.Elections.Preferential.Optional
         {
             _candidateBill = new Candidate("Bill Gates");
             _candidateFred = new Candidate("Fred Flinstone");
-            _optionalPreferentialBallot = new OptionalPreferentialBallot(new []
-            {
-                new Preference(_candidateBill, 1),
-                new Preference(_candidateFred, 3)
-            });
+            _optionalPreferentialBallot = new OptionalPreferentialBallot(
+                new[] {_candidateBill, _candidateFred},
+                new[]
+                {
+                    new Preference(_candidateBill, 1),
+                    new Preference(_candidateFred, 3)
+                });
         }
+
         [Fact]
         public void ThenTheBallotIsNotFormal()
         {
-            Assert.True(_optionalPreferentialBallot.IsInformal(new []{_candidateBill, _candidateFred}));
+            Assert.True(_optionalPreferentialBallot.IsInformal());
         }
     }
 }

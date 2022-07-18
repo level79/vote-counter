@@ -22,7 +22,11 @@ namespace VoteCounter.Test.Unit.Elections.Preferential.Optional.Results
 
             for (var i = 0; i < 1000; i++)
             {
-                _optionalPreferentialElection.AddBallot(new OptionalPreferentialBallotBuilder().WithCandidates(_candidates).Build());
+                _optionalPreferentialElection.AddBallot(
+                    new OptionalPreferentialBallotBuilder()
+                        .ForCandidates(_candidates)
+                        .WithCandidates(_candidates)
+                        .Build());
             }
         }
 

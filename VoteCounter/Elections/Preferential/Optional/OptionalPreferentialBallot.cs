@@ -4,20 +4,10 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Optional
 {
-    public class OptionalPreferentialBallot
+    public class OptionalPreferentialBallot : PreferentialBallotBase
     {
-        private readonly Preference[] _preferences;
-
-        public OptionalPreferentialBallot(IEnumerable<Preference> preferences)
+        public OptionalPreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences) : base(candidates, preferences)
         {
-            _preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
-        }
-
-        public Candidate Primary => _preferences.First().Candidate;
-
-        public Candidate Preference(IEnumerable<Candidate> eliminatedCandidates)
-        {
-            return _preferences.First(preference => !eliminatedCandidates.Contains(preference.Candidate)).Candidate;
         }
 
         public bool IsExhausted(IEnumerable<Candidate> eliminatedCandidates)
@@ -25,15 +15,17 @@ namespace VoteCounter.Elections.Preferential.Optional
             return _preferences.All(preference => eliminatedCandidates.Contains(preference.Candidate));
         }
 
-        public bool IsInformal(IEnumerable<Candidate> candidates)
+        public override bool IsInformal()
         {
             var ballotIsEmpty = _preferences.Length == 0;
             var ballotIsForOtherCandidates = !_preferences
                 .Select(p => p.Candidate)
-                .All(candidates.Contains);
+                .All(_candidates.Contains);
             var ballotPreferencesNotContiguous = _preferences
                 .Select((preference, index) => (preference.Rank, index + 1)).Any(tuple => tuple.Item1 != tuple.Item2);
             return ballotIsEmpty || ballotPreferencesNotContiguous || ballotIsForOtherCandidates;
         }
+
+        
     }
 }

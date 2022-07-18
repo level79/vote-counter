@@ -10,9 +10,10 @@ public class GivenAnElectionWithABallotForANonCandidate
 
     public GivenAnElectionWithABallotForANonCandidate()
     {
+        var candidate = new CandidateBuilder().Build();
         _optionalPreferentialElection = new OptionalPreferentialElectionBuilder().Build();
-        _optionalPreferentialElection.AddCandidate(new CandidateBuilder().Build());
-        _optionalPreferentialElection.AddBallot(new OptionalPreferentialBallotBuilder().Build());
+        _optionalPreferentialElection.AddCandidate(candidate);
+        _optionalPreferentialElection.AddBallot(new OptionalPreferentialBallotBuilder().WithCandidates(candidate).Build());
     }
     
     [Fact]

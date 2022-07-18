@@ -25,7 +25,7 @@ namespace VoteCounter.Elections.Preferential.Optional
 
         public void AddBallot(OptionalPreferentialBallot optionalPreferentialBallot)
         {
-            if (optionalPreferentialBallot.IsInformal(_candidates))
+            if (optionalPreferentialBallot.IsInformal())
             {
                 _informalBallots.Add(optionalPreferentialBallot);
             }

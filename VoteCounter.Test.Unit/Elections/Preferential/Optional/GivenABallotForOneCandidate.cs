@@ -12,13 +12,13 @@ public class GivenABallotForOneCandidate
 
     public GivenABallotForOneCandidate()
     {
-        _optionalPreferentialBallot = new OptionalPreferentialBallotBuilder().Build();
+        var candidate = new CandidateBuilder().Build();
+        _optionalPreferentialBallot = new OptionalPreferentialBallotBuilder().WithCandidates(candidate).Build();
     }
 
     [Fact]
     public void WhenItIsCheckedAgainstAnotherCandidate_ThenItWillBeInformal()
     {
-        var candidate = new CandidateBuilder().Build();
-        Assert.True(_optionalPreferentialBallot.IsInformal(new List<Candidate> {candidate}));
+        Assert.True(_optionalPreferentialBallot.IsInformal());
     }
 }

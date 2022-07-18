@@ -16,11 +16,13 @@ public class GivenABallotMarkedForBillAndFred
     {
         _candidateBill = new Candidate("Bill Gates");
         _candidateFred = new Candidate("Fred Flinstone");
-        _optionalPreferentialBallot = new OptionalPreferentialBallot(new []
-        {
-            new Preference(_candidateBill, 1),
-            new Preference(_candidateFred, 2)
-        });
+        _optionalPreferentialBallot = new OptionalPreferentialBallot(
+            new[] {_candidateBill, _candidateFred},
+            new[]
+            {
+                new Preference(_candidateBill, 1),
+                new Preference(_candidateFred, 2)
+            });
     }
 
     [Fact]
@@ -32,7 +34,7 @@ public class GivenABallotMarkedForBillAndFred
     [Fact]
     public void WhenBillIsEliminated_ThenTheBallotWillBeForFred()
     {
-        var preference = _optionalPreferentialBallot.Preference(new []{ _candidateBill,});
+        var preference = _optionalPreferentialBallot.Preference(new[] {_candidateBill,});
         Assert.Equal(_candidateFred, preference);
     }
 
@@ -40,12 +42,12 @@ public class GivenABallotMarkedForBillAndFred
     public void WhenBillAndFredAreEliminated_ThenTheBallotWillBeExhausted()
     {
         Assert.False(_optionalPreferentialBallot.IsExhausted(Array.Empty<Candidate>()));
-        Assert.True(_optionalPreferentialBallot.IsExhausted(new []{_candidateBill, _candidateFred}));
+        Assert.True(_optionalPreferentialBallot.IsExhausted(new[] {_candidateBill, _candidateFred}));
     }
 
     [Fact]
     public void ThenTheBallotWillBeFormal()
     {
-        Assert.False(_optionalPreferentialBallot.IsInformal(new []{_candidateBill, _candidateFred}));
+        Assert.False(_optionalPreferentialBallot.IsInformal());
     }
 }
