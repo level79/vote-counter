@@ -6,13 +6,16 @@ namespace VoteCounter.Elections.Preferential.Optional
 {
     public class OptionalPreferentialBallot : PreferentialBallot
     {
-        public OptionalPreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences) : base(candidates, preferences)
+        public OptionalPreferentialBallot(IEnumerable<Candidate> candidates, IEnumerable<Preference> preferences) :
+            base(candidates, preferences)
         {
         }
 
         public bool IsExhausted(IEnumerable<Candidate> eliminatedCandidates)
         {
-            return _preferences.All(preference => eliminatedCandidates.Contains(preference.Candidate));
+            return _preferences
+                .Select(p => p.Candidate)
+                .All(eliminatedCandidates.Contains);
         }
 
         public override bool IsInformal()
@@ -22,10 +25,9 @@ namespace VoteCounter.Elections.Preferential.Optional
                 .Select(p => p.Candidate)
                 .All(_candidates.Contains);
             var ballotPreferencesNotContiguous = _preferences
-                .Select((preference, index) => (preference.Rank, index + 1)).Any(tuple => tuple.Item1 != tuple.Item2);
+                .Select((preference, index) => (preference.Rank, index + 1))
+                .Any(tuple => tuple.Item1 != tuple.Item2);
             return ballotIsEmpty || ballotPreferencesNotContiguous || ballotIsForOtherCandidates;
         }
-
-        
     }
 }

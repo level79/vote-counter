@@ -13,7 +13,7 @@ public class FullPreferentialElection : PreferentialElection<FullPreferentialBal
         _informalBallots = new List<FullPreferentialBallot>();
         _candidates = new List<Candidate>();
     }
-    
+
     public override PreferentialElectionResult CountVotes(PreferentialElectionResult results = null)
     {
         results ??= new PreferentialElectionResult();
@@ -23,7 +23,7 @@ public class FullPreferentialElection : PreferentialElection<FullPreferentialBal
             .GroupBy(vote => vote.Preference(eliminatedCandidates));
         var preferenceRound = new PreferenceRound(ballotGrouping
             .Select(group => new Tally(group.Key, group.Count())));
-            
+
         results.AddPreferenceRound(preferenceRound);
 
         return results.CountIsFinalised ? results : CountVotes(results);
