@@ -6,7 +6,7 @@ namespace VoteCounter.Test.Unit.Elections.Preferential.Full;
 
 public class GivenAFullPreferentialBallotThatNominatesAllPreferences
 {
-    private FullPreferentialBallot _fullPreferentialBallot;
+    private readonly FullPreferentialBallot _fullPreferentialBallot;
 
     public GivenAFullPreferentialBallotThatNominatesAllPreferences()
     {
@@ -14,7 +14,7 @@ public class GivenAFullPreferentialBallotThatNominatesAllPreferences
     }
 
     [Fact]
-    public void ThenItWillBeValid()
+    public void ThenItWillBeFormal()
     {
         Assert.Equal(false, _fullPreferentialBallot.IsInformal());
     }
