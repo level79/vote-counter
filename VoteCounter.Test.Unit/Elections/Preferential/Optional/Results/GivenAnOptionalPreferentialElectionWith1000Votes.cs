@@ -13,12 +13,8 @@ namespace VoteCounter.Test.Unit.Elections.Preferential.Optional.Results
 
         public GivenAnOptionalPreferentialElectionWith1000Votes()
         {
-            _optionalPreferentialElection = new OptionalPreferentialElection();
             _candidates = Enumerable.Range(0, 5).Select(i => new CandidateBuilder().Build()).ToArray();
-            foreach (var candidate in _candidates)
-            {
-                _optionalPreferentialElection.AddCandidate(candidate);
-            }
+            _optionalPreferentialElection = new OptionalPreferentialElectionBuilder().WithCandidates(_candidates).Build();
 
             for (var i = 0; i < 1000; i++)
             {

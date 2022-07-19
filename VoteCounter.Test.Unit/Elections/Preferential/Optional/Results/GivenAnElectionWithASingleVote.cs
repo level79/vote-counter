@@ -14,8 +14,7 @@ public class GivenAnElectionWithASingleVote
     {
         var ballot = new OptionalPreferentialBallotBuilder().Build();
         _candidate = ballot.Primary;
-        _optionalPreferentialElection = new OptionalPreferentialElectionBuilder().Build();
-        _optionalPreferentialElection.AddCandidate(_candidate);
+        _optionalPreferentialElection = new OptionalPreferentialElectionBuilder().WithCandidates(_candidate).Build();
         _optionalPreferentialElection.AddBallot(ballot);
     }
 

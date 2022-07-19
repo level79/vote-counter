@@ -13,13 +13,9 @@ public class GivenAFullPreferentialElectionWith1000Votes
 
     public GivenAFullPreferentialElectionWith1000Votes()
     {
-        _fullPreferentialElection = new FullPreferentialElection();
         _candidates = Enumerable.Range(0, 5).Select(i => new CandidateBuilder().Build()).ToArray();
-        foreach (var candidate in _candidates)
-        {
-            _fullPreferentialElection.AddCandidate(candidate);
-        }
-
+        _fullPreferentialElection = new FullPreferentialElectionBuilder().WithCandidates(_candidates).Build();
+        
         for (var i = 0; i < 1000; i++)
         {
             _fullPreferentialElection.AddBallot(
@@ -29,7 +25,7 @@ public class GivenAFullPreferentialElectionWith1000Votes
                     .Build());
         }
     }
-    
+
     [Fact]
     public void RedistributeVotesToFindWinner()
     {

@@ -1,27 +1,24 @@
 using VoteCounter.Elections;
-using VoteCounter.Elections.Preferential.Optional;
+using VoteCounter.Elections.Preferential.Full;
 
 namespace VoteCounter.Test.Unit.Elections.Builders;
 
-public class OptionalPreferentialElectionBuilder
+public class FullPreferentialElectionBuilder
 {
     private Candidate[] _candidates = {new CandidateBuilder().Build()};
-
-    public OptionalPreferentialElectionBuilder()
+    
+    public FullPreferentialElection Build()
     {
-    }
-
-    public OptionalPreferentialElection Build()
-    {
-        var election = new OptionalPreferentialElection();
+        var election = new FullPreferentialElection();
         foreach (var candidate in _candidates)
         {
             election.NominateCandidate(candidate);
         }
+
         return election;
     }
 
-    public OptionalPreferentialElectionBuilder WithCandidates(params Candidate[] candidates)
+    public FullPreferentialElectionBuilder WithCandidates(Candidate[] candidates)
     {
         _candidates = candidates;
         return this;

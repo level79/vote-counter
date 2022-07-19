@@ -14,7 +14,7 @@ public abstract class PreferentialElection<T> where T : PreferentialBallot
     public int FormalBallots => _ballots.Count;
     public abstract PreferentialElectionResult CountVotes(PreferentialElectionResult results = null);
 
-    public void AddCandidate(Candidate candidate)
+    public void NominateCandidate(Candidate candidate)
     {
         _candidates.Add(candidate);
     }
