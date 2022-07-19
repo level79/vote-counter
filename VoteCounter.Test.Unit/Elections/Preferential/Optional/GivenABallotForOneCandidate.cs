@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using VoteCounter.Elections;
 using VoteCounter.Elections.Preferential.Optional;
 using VoteCounter.Test.Unit.Elections.Builders;
 using Xunit;

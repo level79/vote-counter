@@ -6,7 +6,7 @@ namespace VoteCounter.Test.Unit.Elections.Builders;
 public class CandidateBuilder
 {
     private string _name = new Faker().Name.FirstName();
-    
+
     public Candidate Build()
     {
         return new Candidate(_name);

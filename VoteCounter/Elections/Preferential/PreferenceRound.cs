@@ -19,6 +19,7 @@ public class PreferenceRound
     public Candidate Leader => _tallies.First().Candidate;
 
     public bool IsFinalRound => NumberOfCandidates <= 2;
+
     public Candidate EliminatedCandidate =>
         NumberOfCandidates > 2 ? _tallies.Last().Candidate : throw new InvalidOperationException();
 }

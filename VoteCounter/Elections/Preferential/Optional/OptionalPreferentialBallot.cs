@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Optional
 {
     public class OptionalPreferentialBallot : PreferentialBallot
     {
-        private OptionalPreferentialBallot() {
+        private OptionalPreferentialBallot()
+        {
         }
+
         public static OptionalPreferentialBallot IssueBallot(IEnumerable<Candidate> candidates)
         {
             return new OptionalPreferentialBallot
@@ -34,6 +35,5 @@ namespace VoteCounter.Elections.Preferential.Optional
                 .Any(tuple => tuple.Item1 != tuple.Item2);
             return ballotIsEmpty || ballotPreferencesNotContiguous || ballotIsForOtherCandidates;
         }
-        
     }
 }

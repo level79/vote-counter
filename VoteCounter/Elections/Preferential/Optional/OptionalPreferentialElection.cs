@@ -2,7 +2,6 @@
 using System.Linq;
 using VoteCounter.Elections.Preferential.Results;
 using VoteCounter.Elections.Results;
-using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Optional
 {
@@ -26,7 +25,7 @@ namespace VoteCounter.Elections.Preferential.Optional
                 .GroupBy(vote => vote.Preference(eliminatedCandidates));
             var preferenceRound = new PreferenceRound(ballotGrouping
                 .Select(group => new Tally(group.Key, group.Count())));
-            
+
             results.AddPreferenceRound(preferenceRound);
 
             return results.CountIsFinalised ? results : CountVotes(results);

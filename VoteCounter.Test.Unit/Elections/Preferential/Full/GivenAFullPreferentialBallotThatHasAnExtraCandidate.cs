@@ -12,7 +12,8 @@ public class GivenAFullPreferentialBallotThatHasAnExtraCandidate
     {
         var candidate1 = new CandidateBuilder().Build();
         var candidate2 = new CandidateBuilder().Build();
-        _fullPreferentialBallot = new FullPreferentialBallotBuilder().WithCandidates(candidate1).ForCandidates(candidate1, candidate2).Build();
+        _fullPreferentialBallot = new FullPreferentialBallotBuilder().WithCandidates(candidate1)
+            .ForCandidates(candidate1, candidate2).Build();
     }
 
     [Fact]

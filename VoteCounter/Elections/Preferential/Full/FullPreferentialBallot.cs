@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.Preferential.Full;
 
@@ -17,7 +16,7 @@ public class FullPreferentialBallot : PreferentialBallot
             Candidates = candidates
         };
     }
-    
+
     public override bool IsInformal()
     {
         var ballotIsEmpty = Preferences.Length == 0;
@@ -27,7 +26,9 @@ public class FullPreferentialBallot : PreferentialBallot
             .All(Candidates.Contains);
         var ballotPreferencesNotContiguous = Preferences
             .Select((preference, index) => (preference.Rank, index + 1)).Any(tuple => tuple.Item1 != tuple.Item2);
-        return ballotIsEmpty || ballotPreferencesNotContiguous || ballotIsNotForAllCandidates || ballotIsForOtherCandidates;
-
+        return ballotIsEmpty || 
+               ballotPreferencesNotContiguous || 
+               ballotIsNotForAllCandidates ||
+               ballotIsForOtherCandidates;
     }
 }

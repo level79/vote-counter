@@ -6,7 +6,7 @@ namespace VoteCounter.Test.Unit.Elections.Builders;
 public class FullPreferentialElectionBuilder
 {
     private Candidate[] _candidates = {new CandidateBuilder().Build()};
-    
+
     public FullPreferentialElection Build()
     {
         var election = new FullPreferentialElection();

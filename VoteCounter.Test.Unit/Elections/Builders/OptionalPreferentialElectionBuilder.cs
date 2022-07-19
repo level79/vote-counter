@@ -18,6 +18,7 @@ public class OptionalPreferentialElectionBuilder
         {
             election.NominateCandidate(candidate);
         }
+
         return election;
     }
 

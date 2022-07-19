@@ -19,6 +19,7 @@ public abstract class PreferentialBallot
 
     public void AddPreferences(IEnumerable<Preference> preferences)
     {
-        Preferences = preferences.OrderBy(preference => preference.Rank).ToArray();;
+        Preferences = preferences.OrderBy(preference => preference.Rank).ToArray();
+        ;
     }
 }

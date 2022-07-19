@@ -12,7 +12,8 @@ public class GivenAFullPreferentialBallotThatIsNotComplete
     {
         var candidate1 = new CandidateBuilder().Build();
         var candidate2 = new CandidateBuilder().Build();
-        _fullPreferentialBallot = new FullPreferentialBallotBuilder().WithCandidates(candidate1, candidate2).ForCandidates(candidate1).Build();
+        _fullPreferentialBallot = new FullPreferentialBallotBuilder().WithCandidates(candidate1, candidate2)
+            .ForCandidates(candidate1).Build();
     }
 
     [Fact]

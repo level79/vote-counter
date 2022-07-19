@@ -11,13 +11,14 @@ namespace VoteCounter.Test.Unit.Elections
         {
             _candidate = new Candidate(CandidateName);
         }
+
         private const string CandidateName = "Fred Bloggs";
 
         [Fact]
         public void AnotherCandidatesWithSameNameWillBeEqual()
         {
             var candidate2 = new Candidate(CandidateName);
-            
+
             Assert.Equal(_candidate, candidate2);
         }
 
@@ -26,7 +27,7 @@ namespace VoteCounter.Test.Unit.Elections
         {
             Assert.Equal(CandidateName.GetHashCode(), _candidate.GetHashCode());
         }
-        
+
         [Fact]
         public void ToStringWillReturnTheName()
         {

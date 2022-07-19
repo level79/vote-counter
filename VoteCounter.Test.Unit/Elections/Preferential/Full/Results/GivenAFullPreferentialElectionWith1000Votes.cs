@@ -15,7 +15,7 @@ public class GivenAFullPreferentialElectionWith1000Votes
     {
         _candidates = Enumerable.Range(0, 5).Select(i => new CandidateBuilder().Build()).ToArray();
         _fullPreferentialElection = new FullPreferentialElectionBuilder().WithCandidates(_candidates).Build();
-        
+
         for (var i = 0; i < 1000; i++)
         {
             _fullPreferentialElection.AddBallot(

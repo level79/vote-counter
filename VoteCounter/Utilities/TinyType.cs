@@ -3,7 +3,9 @@
     public class TinyType<T>
     {
         public readonly T Value;
-        public TinyType (T value) {
+
+        public TinyType(T value)
+        {
             Value = value;
         }
 

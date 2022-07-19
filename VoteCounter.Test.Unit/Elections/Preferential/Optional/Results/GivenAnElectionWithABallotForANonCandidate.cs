@@ -11,11 +11,13 @@ public class GivenAnElectionWithABallotForANonCandidate
     public GivenAnElectionWithABallotForANonCandidate()
     {
         var candidate = new CandidateBuilder().Build();
-        _optionalPreferentialElection = new OptionalPreferentialElectionBuilder().WithCandidates(new []{candidate}).Build();
+        _optionalPreferentialElection =
+            new OptionalPreferentialElectionBuilder().WithCandidates(new[] {candidate}).Build();
         _optionalPreferentialElection.NominateCandidate(candidate);
-        _optionalPreferentialElection.AddBallot(new OptionalPreferentialBallotBuilder().WithCandidates(candidate).Build());
+        _optionalPreferentialElection.AddBallot(new OptionalPreferentialBallotBuilder().WithCandidates(candidate)
+            .Build());
     }
-    
+
     [Fact]
     public void ThenTheBallotCountsWillBe()
     {
