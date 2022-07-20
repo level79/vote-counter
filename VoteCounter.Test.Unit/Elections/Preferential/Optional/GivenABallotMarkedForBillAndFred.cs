@@ -28,12 +28,6 @@ public class GivenABallotMarkedForBillAndFred
     }
 
     [Fact]
-    public void ThenTheFirstPreferenceIsForBill()
-    {
-        Assert.Equal(_candidateBill, _optionalPreferentialBallot.Primary);
-    }
-
-    [Fact]
     public void WhenBillIsEliminated_ThenTheBallotWillBeForFred()
     {
         var preference = _optionalPreferentialBallot.Preference(new[] {_candidateBill,});
