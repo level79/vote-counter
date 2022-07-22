@@ -32,6 +32,6 @@ public class GivenAFullPreferentialElectionWith1000Votes
         var electorateResult = _fullPreferentialElection.CountVotes();
         Assert.Equal(_fullPreferentialElection.FormalBallots, electorateResult.TotalBallots);
         Assert.Equal(_candidates.Length - 1, electorateResult.PreferenceRoundsRequired);
-        Assert.Equal(2, electorateResult.Candidates);
+        Assert.Equal(2, electorateResult.NumberOfCandidates);
     }
 }

@@ -5,30 +5,30 @@ using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.Preferential.Optional
 {
-    public class OptionalPreferentialElection : PreferentialElection<OptionalPreferentialBallot>
+    public class OptionalPreferentialElection : Election<OptionalPreferentialBallot>
     {
         public OptionalPreferentialElection()
         {
             _ballots = new List<OptionalPreferentialBallot>();
             _informalBallots = new List<OptionalPreferentialBallot>();
-            _candidates = new List<Candidate>();
+            Candidates = new List<Candidate>();
         }
 
-        public override PreferentialElectionResult CountVotes(PreferentialElectionResult results = null)
+        public override ElectionResult CountVotes()
         {
-            results ??= new PreferentialElectionResult();
+            var results = new ElectionResult();
+            while (true)
+            {
+                var eliminatedCandidates = results.EliminatedCandidates;
+                var currentBallots = _ballots.Where(vote => !vote.IsExhausted(eliminatedCandidates));
+                var ballotGrouping = currentBallots.GroupBy(vote => vote.Preference(eliminatedCandidates));
+                var preferenceRound =
+                    new DistributionRound(ballotGrouping.Select(group => new Tally(group.Key, group.Count())));
 
-            var eliminatedCandidates = results.EliminatedCandidates;
-            var currentBallots = _ballots
-                .Where(vote => !vote.IsExhausted(eliminatedCandidates));
-            var ballotGrouping = currentBallots
-                .GroupBy(vote => vote.Preference(eliminatedCandidates));
-            var preferenceRound = new PreferenceRound(ballotGrouping
-                .Select(group => new Tally(group.Key, group.Count())));
+                results.AddPreferenceRound(preferenceRound);
 
-            results.AddPreferenceRound(preferenceRound);
-
-            return results.CountIsFinalised ? results : CountVotes(results);
+                if (results.RemainingCandidates <= 2) return results;
+            }
         }
     }
 }

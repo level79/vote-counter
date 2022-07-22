@@ -1,21 +1,21 @@
 using System.Collections.Generic;
-using VoteCounter.Elections.Preferential.Results;
+using VoteCounter.Elections.Results;
 
-namespace VoteCounter.Elections.Preferential;
+namespace VoteCounter.Elections;
 
-public abstract class PreferentialElection<T> where T : PreferentialBallot
+public abstract class Election<T> where T : IBallot
 {
     protected List<T> _ballots;
     protected List<T> _informalBallots;
-    protected List<Candidate> _candidates;
+    public List<Candidate> Candidates { get; init; }
     public int TotalBallots => FormalBallots + InformalBallots;
     public int InformalBallots => _informalBallots.Count;
     public int FormalBallots => _ballots.Count;
-    public abstract PreferentialElectionResult CountVotes(PreferentialElectionResult results = null);
+    public abstract ElectionResult CountVotes();
 
     public void NominateCandidate(Candidate candidate)
     {
-        _candidates.Add(candidate);
+        Candidates.Add(candidate);
     }
 
     public void AddBallot(T ballot)

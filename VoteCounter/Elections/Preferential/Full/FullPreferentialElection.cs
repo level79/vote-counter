@@ -5,27 +5,28 @@ using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.Preferential.Full;
 
-public class FullPreferentialElection : PreferentialElection<FullPreferentialBallot>
+public class FullPreferentialElection : Election<FullPreferentialBallot>
 {
     public FullPreferentialElection()
     {
         _ballots = new List<FullPreferentialBallot>();
         _informalBallots = new List<FullPreferentialBallot>();
-        _candidates = new List<Candidate>();
+        Candidates = new List<Candidate>();
     }
 
-    public override PreferentialElectionResult CountVotes(PreferentialElectionResult results = null)
+    public override ElectionResult CountVotes()
     {
-        results ??= new PreferentialElectionResult();
+        var results = new ElectionResult();
+        while (true)
+        {
+            var eliminatedCandidates = results.EliminatedCandidates;
+            var ballotGrouping = _ballots.GroupBy(vote => vote.Preference(eliminatedCandidates));
+            var preferenceRound =
+                new DistributionRound(ballotGrouping.Select(group => new Tally(group.Key, group.Count())));
 
-        var eliminatedCandidates = results.EliminatedCandidates;
-        var ballotGrouping = _ballots
-            .GroupBy(vote => vote.Preference(eliminatedCandidates));
-        var preferenceRound = new PreferenceRound(ballotGrouping
-            .Select(group => new Tally(group.Key, group.Count())));
+            results.AddPreferenceRound(preferenceRound);
 
-        results.AddPreferenceRound(preferenceRound);
-
-        return results.CountIsFinalised ? results : CountVotes(results);
+            if (results.RemainingCandidates <= 2) return results;
+        }
     }
 }
