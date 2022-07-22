@@ -2,7 +2,7 @@ using VoteCounter.Elections.FirstPastThePost;
 using VoteCounter.Test.Unit.Elections.Builders;
 using Xunit;
 
-namespace VoteCounter.Test.Unit.Elections.FirstPastThePost;
+namespace VoteCounter.Test.Unit.Elections.FirstPastThePost.Results;
 
 public class GivenAFirstPastThePostElection
 {
@@ -17,7 +17,7 @@ public class GivenAFirstPastThePostElection
             var issueBallot = _election.IssueBallot();
             _election.AddBallot(
                 new FirstPastThePostBallotFiller(issueBallot)
-                    .FromCandidates(_election.Candidates)
+                    .FromCandidates(_election.Candidates.ToArray())
                     .Fill());
         }
     }

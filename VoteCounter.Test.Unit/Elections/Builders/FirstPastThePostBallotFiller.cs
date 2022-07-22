@@ -17,7 +17,7 @@ public class FirstPastThePostBallotFiller
         _issueBallot = issueBallot;
     }
 
-    public FirstPastThePostBallotFiller FromCandidates(List<Candidate> candidates)
+    public FirstPastThePostBallotFiller FromCandidates(params Candidate[] candidates)
     {
         _candidate = candidates.Shuffle().Take(1);
         return this;
