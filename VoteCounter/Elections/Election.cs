@@ -4,7 +4,7 @@ using VoteCounter.Voting;
 
 namespace VoteCounter.Elections;
 
-public abstract class Election<T> where T : IBallot
+public abstract class Election<T> where T : Ballot
 {
     protected List<T> FormalBallots;
     protected List<T> InformalBallots;

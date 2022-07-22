@@ -4,7 +4,7 @@ using VoteCounter.Elections;
 
 namespace VoteCounter.Voting;
 
-public abstract class Ballot : IBallot
+public abstract class Ballot
 {
     protected Preference[] Preferences { get; set; }
     protected IEnumerable<Candidate> Candidates { get; init; }
