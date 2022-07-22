@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Elections.Preferential.Results;
 using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.Preferential.Full;
@@ -9,8 +8,8 @@ public class FullPreferentialElection : Election<FullPreferentialBallot>
 {
     public FullPreferentialElection()
     {
-        _ballots = new List<FullPreferentialBallot>();
-        _informalBallots = new List<FullPreferentialBallot>();
+        FormalBallots = new List<FullPreferentialBallot>();
+        InformalBallots = new List<FullPreferentialBallot>();
         Candidates = new List<Candidate>();
     }
 
@@ -20,7 +19,7 @@ public class FullPreferentialElection : Election<FullPreferentialBallot>
         while (true)
         {
             var eliminatedCandidates = results.EliminatedCandidates;
-            var ballotGrouping = _ballots.GroupBy(vote => vote.Preference(eliminatedCandidates));
+            var ballotGrouping = FormalBallots.GroupBy(vote => vote.Preference(eliminatedCandidates));
             var preferenceRound =
                 new DistributionRound(ballotGrouping.Select(group => new Tally(group.Key, group.Count())));
 

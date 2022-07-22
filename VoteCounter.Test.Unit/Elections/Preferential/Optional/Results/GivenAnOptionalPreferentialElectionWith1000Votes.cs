@@ -32,7 +32,7 @@ namespace VoteCounter.Test.Unit.Elections.Preferential.Optional.Results
         {
             var electorateResult = _optionalPreferentialElection.CountVotes();
             Assert.Equal(2, electorateResult.NumberOfCandidates);
-            Assert.Equal(_optionalPreferentialElection.FormalBallots, electorateResult.TotalBallots);
+            Assert.Equal(_optionalPreferentialElection.TotalFormalBallots, electorateResult.TotalBallots);
             Assert.Equal(_candidates.Length - 1, electorateResult.PreferenceRoundsRequired);
         }
     }

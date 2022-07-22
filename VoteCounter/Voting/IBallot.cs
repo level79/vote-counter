@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using VoteCounter.Voting;
 
-namespace VoteCounter.Elections;
+namespace VoteCounter.Voting;
 
 public interface IBallot
 {

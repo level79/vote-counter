@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Elections.Preferential.Full;
 using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.FirstPastThePost;
@@ -10,8 +8,8 @@ public class FirstPastThePostElection : Election<FirstPastThePostBallot>
 {
     public FirstPastThePostElection()
     {
-        _ballots = new List<FirstPastThePostBallot>();
-        _informalBallots = new List<FirstPastThePostBallot>();
+        FormalBallots = new List<FirstPastThePostBallot>();
+        InformalBallots = new List<FirstPastThePostBallot>();
         Candidates = new List<Candidate>();
     }
 
@@ -20,7 +18,8 @@ public class FirstPastThePostElection : Election<FirstPastThePostBallot>
         var results = new ElectionResult();
 
         results.AddPreferenceRound(new DistributionRound(
-            _ballots.GroupBy(ballot => ballot.Preference()).Select(ballots => new Tally(ballots.Key, _ballots.Count))
+            FormalBallots.GroupBy(ballot => ballot.Preference())
+                .Select(ballots => new Tally(ballots.Key, FormalBallots.Count))
         ));
         return results;
     }

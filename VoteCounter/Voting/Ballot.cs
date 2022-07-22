@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Voting;
+using VoteCounter.Elections;
 
-namespace VoteCounter.Elections;
+namespace VoteCounter.Voting;
 
 public abstract class Ballot : IBallot
 {

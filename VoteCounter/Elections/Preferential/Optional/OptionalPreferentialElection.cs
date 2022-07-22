@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VoteCounter.Elections.Preferential.Results;
 using VoteCounter.Elections.Results;
 
 namespace VoteCounter.Elections.Preferential.Optional
@@ -9,8 +8,8 @@ namespace VoteCounter.Elections.Preferential.Optional
     {
         public OptionalPreferentialElection()
         {
-            _ballots = new List<OptionalPreferentialBallot>();
-            _informalBallots = new List<OptionalPreferentialBallot>();
+            FormalBallots = new List<OptionalPreferentialBallot>();
+            InformalBallots = new List<OptionalPreferentialBallot>();
             Candidates = new List<Candidate>();
         }
 
@@ -20,7 +19,7 @@ namespace VoteCounter.Elections.Preferential.Optional
             while (true)
             {
                 var eliminatedCandidates = results.EliminatedCandidates;
-                var currentBallots = _ballots.Where(vote => !vote.IsExhausted(eliminatedCandidates));
+                var currentBallots = FormalBallots.Where(vote => !vote.IsExhausted(eliminatedCandidates));
                 var ballotGrouping = currentBallots.GroupBy(vote => vote.Preference(eliminatedCandidates));
                 var preferenceRound =
                     new DistributionRound(ballotGrouping.Select(group => new Tally(group.Key, group.Count())));

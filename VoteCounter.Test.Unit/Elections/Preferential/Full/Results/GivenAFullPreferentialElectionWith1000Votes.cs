@@ -30,7 +30,7 @@ public class GivenAFullPreferentialElectionWith1000Votes
     public void RedistributeVotesToFindWinner()
     {
         var electorateResult = _fullPreferentialElection.CountVotes();
-        Assert.Equal(_fullPreferentialElection.FormalBallots, electorateResult.TotalBallots);
+        Assert.Equal(_fullPreferentialElection.TotalFormalBallots, electorateResult.TotalBallots);
         Assert.Equal(_candidates.Length - 1, electorateResult.PreferenceRoundsRequired);
         Assert.Equal(2, electorateResult.NumberOfCandidates);
     }

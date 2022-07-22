@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using VoteCounter.Voting;
 
 namespace VoteCounter.Elections.FirstPastThePost;
 

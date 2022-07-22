@@ -18,7 +18,7 @@ public class GivenAnElectionWithASingleInformalVote
     public void ThenTheBallotCountsWillBe()
     {
         Assert.Equal(1, _optionalPreferentialElection.TotalBallots);
-        Assert.Equal(0, _optionalPreferentialElection.FormalBallots);
-        Assert.Equal(1, _optionalPreferentialElection.InformalBallots);
+        Assert.Equal(0, _optionalPreferentialElection.TotalFormalBallots);
+        Assert.Equal(1, _optionalPreferentialElection.TotalInformalBallots);
     }
 }

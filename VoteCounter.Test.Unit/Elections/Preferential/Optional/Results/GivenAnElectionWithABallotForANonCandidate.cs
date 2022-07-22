@@ -22,7 +22,7 @@ public class GivenAnElectionWithABallotForANonCandidate
     public void ThenTheBallotCountsWillBe()
     {
         Assert.Equal(1, _optionalPreferentialElection.TotalBallots);
-        Assert.Equal(1, _optionalPreferentialElection.InformalBallots);
-        Assert.Equal(0, _optionalPreferentialElection.FormalBallots);
+        Assert.Equal(1, _optionalPreferentialElection.TotalInformalBallots);
+        Assert.Equal(0, _optionalPreferentialElection.TotalFormalBallots);
     }
 }

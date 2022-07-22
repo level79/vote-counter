@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using VoteCounter.Elections.Results;
+using VoteCounter.Voting;
 
 namespace VoteCounter.Elections;
 
 public abstract class Election<T> where T : IBallot
 {
-    protected List<T> _ballots;
-    protected List<T> _informalBallots;
-    public List<Candidate> Candidates { get; init; }
-    public int TotalBallots => FormalBallots + InformalBallots;
-    public int InformalBallots => _informalBallots.Count;
-    public int FormalBallots => _ballots.Count;
+    protected List<T> FormalBallots;
+    protected List<T> InformalBallots;
+    public List<Candidate> Candidates { get; protected init; }
+    public int TotalBallots => TotalFormalBallots + TotalInformalBallots;
+    public int TotalInformalBallots => InformalBallots.Count;
+    public int TotalFormalBallots => FormalBallots.Count;
     public abstract ElectionResult CountVotes();
 
     public void NominateCandidate(Candidate candidate)
@@ -22,11 +23,11 @@ public abstract class Election<T> where T : IBallot
     {
         if (ballot.IsInformal())
         {
-            _informalBallots.Add(ballot);
+            InformalBallots.Add(ballot);
         }
         else
         {
-            _ballots.Add(ballot);
+            FormalBallots.Add(ballot);
         }
     }
 }
