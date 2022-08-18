@@ -11,14 +11,13 @@ public class GivenAFirstPastThePostElection
     public GivenAFirstPastThePostElection()
     {
         _election = new FirstPastThePostElectionBuilder().Build();
+        var ballotFiller = new BallotFiller().FromCandidates(_election.Candidates.ToArray());
 
         for (var i = 0; i < 1000; i++)
         {
             var issueBallot = _election.IssueBallot();
-            _election.AddBallot(
-                new FirstPastThePostBallotFiller(issueBallot)
-                    .FromCandidates(_election.Candidates.ToArray())
-                    .Fill());
+            ballotFiller.Fill(issueBallot);
+            _election.AddBallot(issueBallot);
         }
     }
 
